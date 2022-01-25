@@ -7,7 +7,7 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [postsPerPage, setPostsPerPage] = useState(15);
 
   useEffect(() =>{
     const fetchPosts = async () =>{
@@ -18,11 +18,17 @@ function App() {
     }
     fetchPosts();
   },[]);
+
+  //Get Current Posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage; 
+  const currentPosts = posts.slice(indexOfFirstPost,indexOfLastPost);
+
   console.log(posts);
   return (
-    <div className="app">
+    <div className="app mt-5">
       <h1 className='text-primary mb-3'>Blog</h1>
-      <Posts posts={posts} loading={loading}></Posts>
+      <Posts posts={currentPosts} loading={loading}></Posts>
     </div>
   );
 }
