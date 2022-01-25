@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react';
+import Posts from "./components/Posts.jsx";
 import axios from 'axios';
 import './App.css';
 
@@ -20,7 +21,8 @@ function App() {
   console.log(posts);
   return (
     <div className="app">
-      
+      <h1 className='text-primary mb-3'>Blog</h1>
+      <Posts posts={posts} loading={loading}></Posts>
     </div>
   );
 }
